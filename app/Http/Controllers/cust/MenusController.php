@@ -94,4 +94,8 @@ class MenusController extends Controller
     {
         //
     }
+    public function keranjang()
+    {
+        //
+    }
 }

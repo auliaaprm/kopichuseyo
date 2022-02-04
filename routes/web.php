@@ -86,6 +86,7 @@ Route::middleware(['Admin'])->group(function () {
 Route::middleware(['User'])->group(function () {
     Route::resource('/home', DashboardController::class);
     Route::resource('/events', EventsController::class);
+    Route::get('/events/{id}', [EventsController::class, 'show']);
     Route::resource('/menus', MenusController::class);
     Route::resource('/user', UserController::class);
 });

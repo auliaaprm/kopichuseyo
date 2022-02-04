@@ -40,12 +40,39 @@
                         </div>
                     </div>
                     <!-- Dashboard Ecommerce Starts --> --}}
-                <section id="dashboard-ecommerce">
-                    <h2>Selamat Datang, {{ $user->name }} di Kopi Chuseyo!</h2>
+                    <h2 class="mb-2">Selamat Datang, {{ $user->name }} di Kopi Chuseyo!</h2>
                     <img src="{{ asset('/images/pages/kopichuseyo.jpg') }}" class="card-img-top" alt="header">
-                    
-                </section>
                 <!-- Dashboard Ecommerce ends -->
+                </div>
+                <h3 class="mt-2">RECOMMEND FOR YOU</h3>
+                <div class="row">
+                <?php foreach ($recommend as $menus): ?>
+                            <div class="col-sm-6 col-lg-2 p-2">
+                                <div class="card" data-id="{{ $menus['id'] }}">
+                                    <img class="card-img-top" src="{{ asset('images/menu/'. $menus->image_menu )}}" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><strong>{{ $menus['nama_menu'] }}</strong></h5>
+                                        <p class="card-text">Rp {{ number_format($menus->harga, 3,".",".") }}</p>
+                                        <div class="input-group mb-1">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text unselectable btn-decrease-item" style="cursor: pointer;">-</span>
+                                            </div>
+                                            <input type="number" class="form-control text-center amount-item" aria-label="Amount" value="1" min="1" max="100">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text unselectable btn-add-item" style="cursor: pointer;">+</span>
+                                            </div>
+                                        </div>
+                                        <a href="#" class="btn-add-to-cart btn btn-success btn-block">Tambah ke keranjang</a>
+                                    </div>
+                                </div>
+                            </div>
+                    <?php endforeach ?>
+                    <div>
+                        {{ $recommend->links() }}
+                    </div>
+                    <div class="mb-3"></div>
+                </div>
+                </div>
                 </div>
             </div>
             </div>

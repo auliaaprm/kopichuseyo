@@ -64,16 +64,16 @@
                                     <div class="card-body">
                                         <h5 class="card-title"><strong>{{ $list['nama_menu'] }}</strong></h5>
                                         <p class="card-text">Rp {{ number_format($list->harga, 3,".",".") }}</p>
-                                        <div class="input-group mb-1">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text unselectable btn-decrease-item" style="cursor: pointer;">-</span>
+                                        <div class="input-group quantity mb-1">
+                                            <div class="input-group-prepend decrement-btn" style="cursor: pointer">
+                                                <span class="input-group-text">-</span>
                                             </div>
-                                            <input type="number" class="form-control text-center amount-item" aria-label="Amount" value="1" min="1" max="100">
-                                            <div class="input-group-append">
-                                                <span class="input-group-text unselectable btn-add-item" style="cursor: pointer;">+</span>
+                                            <input type="text" class="qty-input form-control" maxlength="2" max="10" value="1">
+                                            <div class="input-group-append increment-btn" style="cursor: pointer">
+                                                <span class="input-group-text">+</span>
                                             </div>
                                         </div>
-                                        <a href="#" class="btn-add-to-cart btn btn-success btn-block">Tambah ke keranjang</a>
+                                        <a href="" class="btn-add-to-cart btn btn-success btn-block">Tambah ke keranjang</a>
                                     </div>
                                 </div>
                             </div>
@@ -102,7 +102,9 @@
 
 @push('script')
 
-
+    <script>
+        
+    </script>
     <!-- BEGIN: Vendor JS-->
     <script src="{{ asset('/vendors/js/vendors.min.js') }}"></script>
     <!-- BEGIN Vendor JS-->
@@ -139,7 +141,35 @@
                 url: "@chart('sample_chart')",
             });
             console.log('kebuka');
-        })
+        });
+
+        $(document).ready(function () {
+            $('.increment-btn').click(function (e) {
+                e.preventDefault();
+
+                var inc_value = $('.qty-input').val();
+                var value =parseInt(inc_value, 10);
+                value = isNaN(value) ? 0 : value;
+                if(value < 10)
+                {
+                    value++;
+                    $('.qty-input').val(value);
+                }
+            });
+            
+            $('.decrement-btn').click(function (e) {
+                e.preventDefault();
+
+                var inc_value = $('.qty-input').val();
+                var value =parseInt(dec_value, 10);
+                value = isNaN(value) ? 0 : value;
+                if(value > 1)
+                {
+                    value--;
+                    $('.qty-input').val(value);
+                }
+            });
+        });
     </script> --}}
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script type="text/javascript">

@@ -40,36 +40,49 @@
                         </div>
                     </div>
                      --}}
-                
-                    <div class="card">
+                     <div class="card">
                     <div class="card-header bg-white">
-                        <h1 class="h3 text-gray-800">Events</h1>
+                        <h3>Detail Events</h3>
                     </div>
-                    <hr>
-                    <?php foreach ($events as $list): ?>
-                        <div class="col-sm-12 col-lg-12">
-                        <div class="card" data-id="{{ $list['id'] }}" style="margin: auto;">
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <div style="height: 150px; width: 150px;">
-                                    <img src="{{ asset('images/event/'. $list->image_event )}}" class="img-fluid rounded-start" alt="Card image cap">
-                                    </div>
-                                </div>
-                                <div class="col-md-8">
+                    <div class="card-body">
+                        <div div class="mt-1 text-center">
+                        <img src="{{ asset('images/event/'. $events->image_event )}}" height="230" width="230"class="img-fluid rounded-start" alt="...">
+                        </div>
+                        <div class="mt-2 text-center">
+                        <h5><b>{{ $events['nama_event'] }}</b></h5>
+                        </div>
+                    </div>
+                    <ul class="nav nav-pills nav-fill">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="pills-tentang-tab" data-toggle="pill" href="#pills-tentang" role="tab" aria-controls="pills-tentang" aria-selected="true">Tentang</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="pills-caramendapatkan-tab" data-toggle="pill" href="#pills-caramendapatkan" role="tab" aria-controls="pills-caramendapatkan" aria-selected="false">Cara Mendapatkan</a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content mt-4 mb-5 ml-3 mr-3" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="pills-tentang" role="tabpanel" aria-labelledby="pills-tentang-tab">
+                            <?php if (!empty($events)): ?>
                                 <div class="card-body text-left">
-                                    <div class="mt-2">
-                                    <h5 class="card-title"><a href="/events/{{$list['id']}}">{{ $list['nama_event'] }}</a></h5>
-                                    <p class="card-text">{{ date("d F Y",strtotime($list->tanggal_event)) }}</p>
-                                    </div>
-                                </div>
-                                </div>
-                            </div>
+                                    <p class="card-text">{{ $events['detail'] }}</p>
+                                    <br></br>
+                                    <p class="card-text mb-3">{{ $events['penyelenggara'] }}</p>
+                                </div>     
+                            <?php endif ?>
                         </div>
+                        <div class="tab-pane fade" id="pills-caramendapatkan" role="tabpanel" aria-labelledby="pills-caramendapatkan-tab">
+                            <?php if (!empty($events)): ?>
+                                <div class="card-bodytext-left">
+                                    <p class="card-text mb-3">{{ $events['cara_mendapatkan'] }}</p>
+                                </div>   
+                            <?php endif ?>
                         </div>
-                        <hr>
-                    <?php endforeach ?>
                     </div>
-                <!-- Dashboard Ecommerce ends -->
+                    </div>
+                    
+                    </div>
+
                 </div>
             </div>
             </div>

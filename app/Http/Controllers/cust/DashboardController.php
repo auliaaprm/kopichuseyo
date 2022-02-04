@@ -24,6 +24,7 @@ class DashboardController extends Controller
         $data['menu'] = User_menu::all();
         $data['users'] = Users::all();
         $data['menus'] = Menu::all();
+        $data['recommend'] = Menu::orderBy('id', 'asc')->paginate(4);
 
         return view('cust.dashboard.dashboard', $data);
 
@@ -58,7 +59,7 @@ class DashboardController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**

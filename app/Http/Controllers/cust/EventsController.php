@@ -58,7 +58,12 @@ class EventsController extends Controller
      */
     public function show($id)
     {
-        //
+        $data['user'] = AUTH::user();
+        $data['title'] = 'Dashboard';
+        $data['menu'] = User_menu::all();
+        $data['users'] = Users::all();
+        $data['events'] = Event::where('id', $id)->first();
+        return view('cust.events.show', $data);
     }
 
     /**
